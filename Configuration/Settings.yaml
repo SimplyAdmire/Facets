@@ -6,6 +6,6 @@ SimplyAdmire:
          defaultReferenceNodePath: '/sites/facets/content-elements'
          defaultContentCollectionNodePath: 'main'
         data:
-         documents: 'resource://SimplyAdmire.Facets/Private/DataSets/Documents/Documents.xml'
+         documents: 'resource://SimplyAdmire.Facets/Private/Content/Sites.xml'
          nodeTypes:
-          text: 'resource://SimplyAdmire.Facets/Private/DataSets/NodeTypes/Text.xml'
+          text: 'resource://SimplyAdmire.Facets/Private/Content/NodeTypes/Text.xml'
