@@ -1,0 +1,22 @@
+page = TYPO3.Neos:Page
+page.body {
+	templatePath = 'resource://SimplyAdmire.Facets/Private/Templates/DocumentTypes/Default.html'
+	sectionName = 'body'
+
+	parts.mainMenu = TYPO3.Neos:Menu {
+		templatePath = 'resource://SociaalIntranet.Boilerplate/Private/Templates/ProtoTypes/Menu.html'
+		entryLevel = 1
+		maximumLevels = 3
+	}
+
+	content.main = TYPO3.Neos:PrimaryContent {
+		nodePath = 'main'
+	}
+
+	content.footer = TYPO3.Neos:ContentCollection {
+		nodePath = 'footer'
+		@cache {
+			maximumLifetime = 86400
+		}
+	}
+}
