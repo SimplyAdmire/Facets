@@ -3,10 +3,13 @@ SimplyAdmire:
     service:
       importService:
         options:
-         defaultReferenceNodePath: '/sites/facets/content-elements'
-         defaultContentCollectionNodePath: 'main'
+          defaultReferenceNodePath: '/sites/facets/content-elements'
         data:
-         documents: 'resource://SimplyAdmire.Facets/Private/Content/Sites.xml'
-         nodeTypes:
-          text: 'resource://SimplyAdmire.Facets/Private/Content/NodeTypes/Text.xml'
-          textWithImage: 'resource://SimplyAdmire.Facets/Private/Content/NodeTypes/TextWithImage.xml'
+          documents: 'resource://SimplyAdmire.Facets/Private/Content/Sites.xml'
+          nodeTypes:
+            text: 'resource://SimplyAdmire.Facets/Private/Content/NodeTypes/Text.xml'
+            textWithImage: 'resource://SimplyAdmire.Facets/Private/Content/NodeTypes/TextWithImage.xml'
+          components:
+            componentX:
+              resource: 'resource://SimplyAdmire.Facets/Private/Content/ComponentX.xml'
+              parentNodePath: '/sites/facets'

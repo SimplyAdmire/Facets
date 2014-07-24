@@ -44,22 +44,19 @@ class FacetsCommandController extends CommandController {
 	/**
 	 * Import Document structure
 	 *
-	 * @param string $filename
 	 * @return void
 	 */
-	public function importDocumentsCommand($filename = NULL) {
-		if ($filename === NULL && $this->importService->getDocumentData()=== NULL) {
+	public function importDocumentsCommand() {
+		if ($this->importService->getDocumentResource() === NULL) {
 			$this->outputLine('The documents file could not be found based on:');
 			$this->outputLine('');
 			$this->outputLine('     SimplyAdmire.Facets.importService.data.documents');
-			$this->outputLine('');
-			$this->outputLine('Please check and correct the settings or override the settings by adding the --filename argument.');
 			exit();
 		}
 		try {
 			$this->importService->importDocuments();
 		} catch (\Exception $exception) {
-			$this->outputLine('Error: During the import of the file "%s" an exception occurred: %s', array($filename, $exception->getMessage()));
+			$this->outputLine('Error: During the import of the Documents file an exception occurred: %s', array($exception->getMessage()));
 			exit();
 		}
 		$this->outputLine('Import successful.');
@@ -84,9 +81,29 @@ class FacetsCommandController extends CommandController {
 			$this->outputLine('     SimplyAdmire.Facets.importService.data.nodeTypes.' . $nodeType);
 			exit();
 		}
-		$this->outputLine('Import successful. The nodeType is either freshly created or its properties are updated.');
+		$this->outputLine('Import successful.');
 	}
 
+	/**
+	 * Import Component data
+	 *
+	 * @param string $component
+	 * @param string $parentNodePath
+	 * @return void
+	 */
+	public function importComponentCommand($component, $parentNodePath = NULL) {
+		$componentData = $parentNodePath === NULL ? $this->importService->importComponent($component) : $this->importService->importComponent($component, $parentNodePath);
+		if ($componentData === FALSE) {
+			$this->outputLine('The components file or parentNodePath could not be found based on:');
+			$this->outputLine('');
+			$this->outputLine('     SimplyAdmire.Facets.importService.data.components.' . $component);
+			$this->outputLine('');
+			$this->outputLine('Please check and correct the settings. You can optionally override the parentNodePath using the --parentNodePath argument');
+			exit();
+		}
+		$this->outputLine('Import successful.');
+
+	}
 	/**
 	 * Remove all nodes, workspaces, domains and sites.
 	 *

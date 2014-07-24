@@ -46,34 +46,53 @@ class ImportService extends SiteImportService {
 	/**
 	 * @return string
 	 */
-	public function getDocumentData() {
-		$documentData = isset($this->data['documents']) ? $this->data['documents'] : NULL;
-		if ($documentData !== NULL && file_exists($documentData)) {
-			return $documentData;
+	public function getDocumentResource() {
+		$documentResourceFile = isset($this->data['documents']) ? $this->data['documents'] : NULL;
+		if ($documentResourceFile !== NULL && file_exists($documentResourceFile)) {
+			return $documentResourceFile;
 		}
 		return NULL;
 	}
 
 	/**
-	 * @param $nodeType
+	 * @param string $nodeType
 	 * @return string
 	 */
-	public function getNodeTypeData($nodeType) {
-		$nodeTypeData = isset($this->data['nodeTypes'][$nodeType]) ? $this->data['nodeTypes'][$nodeType] : NULL;
-		if ($nodeTypeData !== NULL && file_exists($nodeTypeData)) {
-			return $nodeTypeData;
+	public function getNodeTypeResource($nodeType) {
+		$nodeTypeResourceFile = isset($this->data['nodeTypes'][$nodeType]) ? $this->data['nodeTypes'][$nodeType] : NULL;
+		if ($nodeTypeResourceFile !== NULL && file_exists($nodeTypeResourceFile)) {
+			return $nodeTypeResourceFile;
 		}
 		return NULL;
 	}
 
+	/**
+	 * @param string $component
+	 * @return string
+	 */
+	public function getComponentResource($component) {
+		$componentResourceFile = isset($this->data['components'][$component]['resource']) ? $this->data['components'][$component]['resource'] : NULL;
+		if ($componentResourceFile !== NULL && file_exists($componentResourceFile)) {
+			return $componentResourceFile;
+		}
+		return NULL;
+	}
+
+	protected function getComponentParentNodePath($component) {
+		$componentParentNodePath = isset($this->data['components'][$component]['parentNodePath']) ? $this->data['components'][$component]['parentNodePath'] : NULL;
+		if ($componentParentNodePath !== NULL) {
+			return $componentParentNodePath;
+		}
+		return NULL;
+	}
 	/**
 	 * @return boolean
 	 * @throws \TYPO3\Flow\Package\Exception\InvalidPackageStateException
 	 * @throws \TYPO3\Flow\Package\Exception\UnknownPackageException
 	 */
 	public function importDocuments() {
-		if ($this->getDocumentData() !== NULL) {
-			$this->importSitesFromFile($this->getDocumentData(), $this->createContext());
+		if ($this->getDocumentResource() !== NULL) {
+			$this->importSitesFromFile($this->getDocumentResource(), $this->createContext());
 			return TRUE;
 		}
 		return FALSE;
@@ -91,7 +110,7 @@ class ImportService extends SiteImportService {
 			return FALSE;
 		}
 		$contentContext = $this->createContext();
-		$nodeData = $this->getNodeTypeData($nodeType);
+		$nodeData = $this->getNodeTypeResource($nodeType);
 		if ($nodeData !== NULL) {
 			$referenceNode = $contentContext->getNode($referenceNodePath);
 			if (!$referenceNode instanceof NodeInterface) {
@@ -110,6 +129,38 @@ class ImportService extends SiteImportService {
 				}
 				return TRUE;
 			}
+		}
+		return FALSE;
+	}
+
+	/**
+	 * @param string $component
+	 * @param string $parentNodePath
+	 * @return boolean
+	 * @throws \Exception
+	 */
+	public function importComponent($component, $parentNodePath = NULL) {
+		$parentNodePath = $parentNodePath !== NULL ? $parentNodePath : $this->getComponentParentNodePath($component);
+		if ($parentNodePath === NULL) {
+			return FALSE;
+		}
+		$contentContext = $this->createContext();
+		$nodeData = $this->getComponentResource($component);
+		if ($nodeData !== NULL) {
+			$parentNode = $contentContext->getNode($parentNodePath);
+			if (!$parentNode instanceof NodeInterface) {
+				return FALSE;
+			}
+			// Add content into the reference node (mapping...)
+			$nodeDataXMLElement = $this->getSimpleXMLElementFromXml($this->loadXML($nodeData));
+			foreach ($nodeDataXMLElement->node as $node) {
+				try {
+					$this->importNode($node, $parentNode);
+				} catch (\Exception $exception) {
+					return FALSE;
+				}
+			}
+			return TRUE;
 		}
 		return FALSE;
 	}
