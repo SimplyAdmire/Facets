@@ -1,0 +1,25 @@
+{
+	"name": "simplyadmire/facets",
+	"type": "typo3-flow-package",
+	"description": "",
+	"license": "LGPL-3.0+",
+	"authors": [
+		{
+			"name": "Rens Admiraal",
+			"email": "rens@simplyadmire.com"
+		},
+		{
+			"name": "Henjo Hoeksma",
+			"email": "henjo@simplyadmire.com"
+		}
+	],
+	"require": {
+		"typo3/neos": "*",
+		"typo3/neos-nodetypes": "*"
+	},
+	"autoload": {
+		"psr-0": {
+			"SimplyAdmire\\Facets": "Classes"
+		}
+	}
+}

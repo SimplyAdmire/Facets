@@ -1,0 +1,11 @@
+SimplyAdmire:
+  Facets:
+    service:
+      importService:
+        options:
+         defaultReferenceNodePath: '/sites/facets/content-elements'
+         defaultContentCollectionNodePath: 'main'
+        data:
+         documents: 'resource://SimplyAdmire.Facets/Private/DataSets/Documents/Documents.xml'
+         nodeTypes:
+          text: 'resource://SimplyAdmire.Facets/Private/DataSets/NodeTypes/Text.xml'
