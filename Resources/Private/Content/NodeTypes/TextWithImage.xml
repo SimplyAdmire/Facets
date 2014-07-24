@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+	<node identifier="a96e14d0-9c3d-dc76-c629-165d6463e637" type="TYPO3.Neos.NodeTypes:TextWithImage" nodeName="node-53d11bbb615ad">
+		<properties>
+			<alignment>right</alignment>
+			<caption><![CDATA[<p>Treat'em rough!</p>]]></caption>
+			<text><![CDATA[<p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Sed posuere consectetur est at lobortis. Nullam quis risus eget urna mollis ornare vel eu leo. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas sed diam eget risus varius blandit sit amet non magna. Donec id elit non mi porta gravida at eget metus.<br/><br/>Maecenas sed diam eget risus varius blandit sit amet non magna. Donec id elit non mi porta gravida at eget metus. Nulla vitae elit libero, a pharetra augue. Vestibulum id ligula porta felis euismod semper. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.<br/><br/>Curabitur blandit tempus porttitor. Aenean lacinia bibendum nulla sed consectetur. Donec sed odio dui. Nullam id dolor id nibh ultricies vehicula ut id elit. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Donec ullamcorper nulla non metus auctor fringilla.<br/></p>]]></text>
+			<image __type="object" __classname="TYPO3\Media\Domain\Model\ImageVariant">
+				<processingInstructions><![CDATA[a:2:{i:0;a:2:{s:7:"command";s:4:"crop";s:7:"options";a:2:{s:5:"start";a:2:{s:1:"x";i:0;s:1:"y";i:0;}s:4:"size";a:2:{s:5:"width";i:814;s:6:"height";i:1200;}}}i:1;a:2:{s:7:"command";s:6:"resize";s:7:"options";a:1:{s:4:"size";a:2:{s:5:"width";s:3:"400";s:6:"height";i:589;}}}}]]></processingInstructions>
+				<originalImage __type="object" __classname="TYPO3\Media\Domain\Model\Image" __identifier="40ea8331-4224-5d04-edaa-42e502e6b828">
+					<resource __type="object" __classname="TYPO3\Flow\Resource\Resource" __identifier="ff5c2c6c-6c2f-ae59-bc51-95d7e90812cb">
+						<filename>tumblr_n7qhtmTZEK1sfie3io1_1280.jpg</filename>
+						<hash>b17a8920ca1ee9933c251371ccfc7148e2cc2279</hash>
+					</resource>
+				</originalImage>
+			</image>
+			<alternativeText>Alternative text</alternativeText>
+			<title>Title</title>
+			<link>https://www.flickr.com/photos/library-company-of-philadelphia/14162468846/</link>
+			<hasCaption __type="boolean">1</hasCaption>
+		</properties>
+	</node>
+</root>
