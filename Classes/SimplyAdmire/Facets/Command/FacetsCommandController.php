@@ -42,6 +42,36 @@ class FacetsCommandController extends CommandController {
 	protected $workspaceRepository;
 
 	/**
+	 * @Flow\Inject(setting="data")
+	 * @var array
+	 */
+	protected $data = array();
+
+	/**
+	 * @Flow\Inject(setting="defaultReferenceNodePath")
+	 * @var string
+	 */
+	protected $defaultReferenceNodePath;
+
+	/**
+	 * @return void
+	 */
+	public function importAllCommand() {
+		$this->outputLine('Import documents');
+		$this->importDocumentsCommand();
+
+		foreach ($this->data['nodeTypes'] as $nodeTypeName => $nodeTypeXml) {
+			$this->outputLine('Import nodetype %s', array($nodeTypeName));
+			$this->importNodeTypeCommand($nodeTypeName);
+		}
+
+		foreach ($this->data['components'] as $componentName => $componentConfiguration) {
+			$this->outputLine('Import component %s', array($componentName));
+			$this->importComponentCommand($componentName, isset($componentConfiguration['parentNodePath']) ? $componentConfiguration['parentNodePath'] : $this->defaultReferenceNodePath);
+		}
+	}
+
+	/**
 	 * Import Document structure
 	 *
 	 * @return void
@@ -50,7 +80,7 @@ class FacetsCommandController extends CommandController {
 		if ($this->importService->getDocumentResource() === NULL) {
 			$this->outputLine('The documents file could not be found based on:');
 			$this->outputLine('');
-			$this->outputLine('     SimplyAdmire.Facets.importService.data.documents');
+			$this->outputLine('     SimplyAdmire.Facets.data.documents');
 			exit();
 		}
 		try {
@@ -78,7 +108,7 @@ class FacetsCommandController extends CommandController {
 			$this->outputLine('');
 			$this->outputLine('Also make sure the specified nodeType has the proper configuration at:');
 			$this->outputLine('');
-			$this->outputLine('     SimplyAdmire.Facets.importService.data.nodeTypes.' . $nodeType);
+			$this->outputLine('     SimplyAdmire.Facets.data.nodeTypes.' . $nodeType);
 			exit();
 		}
 		$this->outputLine('Import successful.');
@@ -96,7 +126,7 @@ class FacetsCommandController extends CommandController {
 		if ($componentData === FALSE) {
 			$this->outputLine('The components file or parentNodePath could not be found based on:');
 			$this->outputLine('');
-			$this->outputLine('     SimplyAdmire.Facets.importService.data.components.' . $component);
+			$this->outputLine('     SimplyAdmire.Facets.data.components.' . $component);
 			$this->outputLine('');
 			$this->outputLine('Please check and correct the settings. You can optionally override the parentNodePath using the --parentNodePath argument');
 			exit();

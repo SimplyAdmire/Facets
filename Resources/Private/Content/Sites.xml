@@ -1,35 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <root>
-	<site identifier="4b0d0abb-71c0-d4b4-86b0-fdc84ff75883" type="TYPO3.Neos.NodeTypes:Page" nodeName="facets">
+	<site identifier="4b0d0abb-71c0-d4b4-86b0-fdc84ff75883" type="SimplyAdmire.Facets:Page" nodeName="facets">
 		<properties>
 			<title>Home</title>
 			<name>SimplyAdmire Facets</name>
 			<state>1</state>
 			<siteResourcesPackageKey>SimplyAdmire.Facets</siteResourcesPackageKey>
 		</properties>
-		<node identifier="96f6f3dd-38af-7835-c4be-05da00eb7125" type="TYPO3.Neos.NodeTypes:Page" nodeName="pages">
+		<node identifier="96f6f3dd-38af-7835-c4be-05da00eb7125" type="SimplyAdmire.Facets:Page" nodeName="pages">
 			<properties>
 				<title>Pages</title>
 			</properties>
-			<node identifier="62812c07-5519-de97-bb45-81b8c53595d0" type="TYPO3.Neos.NodeTypes:Page" nodeName="default">
-				<properties>
-					<title>Default</title>
-				</properties>
-				<node identifier="dfa8fa3b-e08c-083b-dfb4-b6d77886b342" type="TYPO3.Neos:ContentCollection" nodeName="main"/>
-			</node>
 			<node identifier="d91400f7-15eb-b9d6-1e3f-b87fb4af9c20" type="TYPO3.Neos:ContentCollection" nodeName="main"/>
 		</node>
-		<node identifier="0ca1d01e-5b2c-8cc0-87d7-e59f0ec80f78" type="TYPO3.Neos.NodeTypes:Page" nodeName="general-elements">
+		<node identifier="0ca1d01e-5b2c-8cc0-87d7-e59f0ec80f78" type="SimplyAdmire.Facets:Page" nodeName="general-elements">
 			<properties>
 				<title>General Elements</title>
 			</properties>
 			<node identifier="5b53ad53-1d80-7c93-dc0f-5977b715823f" type="TYPO3.Neos:ContentCollection" nodeName="main"/>
 		</node>
-		<node identifier="eb3521a5-fa81-5cf1-dbcc-ed4d02532e65" type="TYPO3.Neos.NodeTypes:Page" nodeName="content-elements">
+		<node identifier="eb3521a5-fa81-5cf1-dbcc-ed4d02532e65" type="SimplyAdmire.Facets:Page" nodeName="content-elements">
 			<properties>
 				<title>Content Elements</title>
 			</properties>
 			<node identifier="46d23651-bfa6-ee4f-c288-342c3152c4a2" type="TYPO3.Neos:ContentCollection" nodeName="main"/>
+		</node>
+		<node identifier="c746e8b9-a91f-b66c-8223-26a46c8eb27a" type="SimplyAdmire.Facets:Page" nodeName="features">
+			<properties>
+				<title>Features</title>
+			</properties>
+			<node identifier="0783fb07-0401-015d-e310-a413a60d90de" type="TYPO3.Neos:ContentCollection" nodeName="main"/>
 		</node>
 		<node identifier="66cf1cb0-d836-5503-d843-c9b92215a8f2" type="TYPO3.Neos:ContentCollection" nodeName="main"/>
 		<node identifier="95c45b80-e593-9d4c-8fff-52bb13fa7683" type="TYPO3.Neos:ContentCollection" nodeName="footer"/>

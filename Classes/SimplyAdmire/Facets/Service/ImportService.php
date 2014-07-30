@@ -20,19 +20,19 @@ class ImportService extends SiteImportService {
 	protected $contextFactory;
 
 	/**
-	 * @Flow\Inject(setting="service.importService.data", package="SimplyAdmire.Facets")
+	 * @Flow\Inject(setting="data")
 	 * @var array
 	 */
 	protected $data;
 
 	/**
-	 * @Flow\Inject(setting="service.importService.options.defaultReferenceNodePath", package="SimplyAdmire.Facets")
+	 * @Flow\Inject(setting="defaultReferenceNodePath")
 	 * @var string
 	 */
 	protected $defaultReferenceNodePath;
 
 	/**
-	 * @Flow\Inject(setting="service.importService.options.defaultContentCollectionNodePath", package="SimplyAdmire.Facets")
+	 * @Flow\Inject(setting="defaultContentCollectionNodePath")
 	 * @var string
 	 */
 	protected $defaultContentCollectionNodePath;
@@ -104,7 +104,6 @@ class ImportService extends SiteImportService {
 	 * @return boolean
 	 */
 	public function importNodeType($nodeType, $referenceNodePath = NULL) {
-
 		$referenceNodePath = $referenceNodePath !== NULL ? $referenceNodePath : $this->defaultReferenceNodePath;
 		if ($referenceNodePath === NULL) {
 			return FALSE;
