@@ -1,20 +1,14 @@
 {namespace ts=TYPO3\TypoScript\ViewHelpers}
+<f:section name="header">
+	<f:for each="{styles}" as="stylesheet">
+		<link rel="{f:uri.resource(path:stylesheet)}" type="text/css" />
+	</f:for>
+	<f:for each="{scripts}" as="script">
+		<script src="{f:uri.resource(path:script)}"></script>
+	</f:for>
+</f:section>
+
 <f:section name="body">
-	<header>
-		<nav>
-			<ts:render path="parts.mainMenu" />
-		</nav>
-	</header>
-	<div class="row">
-		<div class="small-12 columns">
-			<ts:render path="content.main" />
-		</div>
-	</div>
-	<footer>
-		<div class="row">
-			<div class="small-12 columns">
-				<ts:render path="content.footer" />
-			</div>
-		</div>
-	</footer>
+	<ts:render path="parts.mainMenu" />
+	<ts:render path="content.main" />
 </f:section>

@@ -1,22 +1,30 @@
-page = TYPO3.Neos:Page
-page.body {
-	templatePath = 'resource://SimplyAdmire.Facets/Private/Templates/DocumentTypes/Default.html'
-	sectionName = 'body'
+root.facets {
+	condition = ${q(node).is('[instanceof SimplyAdmire.Facets:Page]')}
+	renderPath = '/facets'
+}
 
-	parts.mainMenu = TYPO3.Neos:Menu {
-		templatePath = 'resource://SociaalIntranet.Boilerplate/Private/Templates/ProtoTypes/Menu.html'
-		entryLevel = 1
-		maximumLevels = 3
+facets = TYPO3.Neos:Page
+facets {
+
+	head.headerIncludes = TYPO3.TypoScript:Template {
+		templatePath = 'resource://SimplyAdmire.Facets/Private/Templates/DocumentTypes/Default.html'
+		sectionName = 'header'
+
+		styles = ${Configuration.setting('SimplyAdmire.Facets.contexts.default.includes.styles')}
+		scripts = ${Configuration.setting('SimplyAdmire.Facets.contexts.default.includes.scripts')}
 	}
 
-	content.main = TYPO3.Neos:PrimaryContent {
-		nodePath = 'main'
-	}
+	body {
+		templatePath = 'resource://SimplyAdmire.Facets/Private/Templates/DocumentTypes/Default.html'
+		sectionName = 'body'
 
-	content.footer = TYPO3.Neos:ContentCollection {
-		nodePath = 'footer'
-		@cache {
-			maximumLifetime = 86400
+		parts.mainMenu = TYPO3.Neos:Menu {
+			entryLevel = 1
+			maximumLevels = 3
+		}
+
+		content.main = TYPO3.Neos:PrimaryContent {
+			nodePath = 'main'
 		}
 	}
 }

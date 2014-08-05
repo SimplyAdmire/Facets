@@ -1,5 +1,11 @@
 SimplyAdmire:
   Facets:
+    contexts:
+      default:
+        includes:
+          styles: []
+          scripts: []
+
     defaultReferenceNodePath: '/sites/facets/content-elements'
     data:
       documents: 'resource://SimplyAdmire.Facets/Private/Content/Sites.xml'
@@ -8,5 +14,9 @@ SimplyAdmire:
 #        textWithImage: 'resource://SimplyAdmire.Facets/Private/Content/NodeTypes/TextWithImage.xml'
       components: []
 #        componentX:
+#          # Appends style to the context
+#          includes:
+#            styles: []
+#            scripts: []
 #          resource: 'resource://SimplyAdmire.Facets/Private/Content/ComponentX.xml'
 #          parentNodePath: '/sites/facets'

@@ -3,6 +3,7 @@ namespace SimplyAdmire\Facets\Command;
 
 use TYPO3\Flow\Annotations as Flow;
 use TYPO3\Flow\Cli\CommandController;
+use SimplyAdmire\Facets\Annotations as Facets;
 
 /**
  * The Import Command Controller
@@ -54,6 +55,41 @@ class FacetsCommandController extends CommandController {
 	protected $defaultReferenceNodePath;
 
 	/**
+	 * @Flow\Inject
+	 * @var \TYPO3\Flow\Object\ObjectManagerInterface
+	 */
+	protected $objectManager;
+
+	/**
+	 * @Flow\Inject
+	 * @var \TYPO3\Flow\Mvc\Dispatcher
+	 */
+	protected $dispatcher;
+
+	/**
+	 * @Flow\Inject
+	 * @var \TYPO3\Flow\Reflection\ReflectionService
+	 */
+	protected $reflectionService;
+
+	/**
+	 * @return void
+	 */
+	protected function callCommandMethod() {
+		parent::callCommandMethod();
+
+		if ($this->reflectionService->isMethodAnnotatedWith(__CLASS__, $this->commandMethodName, 'SimplyAdmire\Facets\Annotations\AutoCreateChildnodes')) {
+			$request = $this->objectManager->get('TYPO3\Flow\Cli\RequestBuilder')->build('node:autocreatechildnodes');
+			$response = new \TYPO3\Flow\Cli\Response();
+
+			$this->dispatcher->dispatch($request, $response);
+
+			$this->outputLine('Automatically created childnodes if missing');
+		}
+	}
+
+	/**
+	 * @Facets\AutoCreateChildnodes
 	 * @return void
 	 */
 	public function importAllCommand() {
@@ -74,6 +110,7 @@ class FacetsCommandController extends CommandController {
 	/**
 	 * Import Document structure
 	 *
+	 * @Facets\AutoCreateChildnodes
 	 * @return void
 	 */
 	public function importDocumentsCommand() {
@@ -95,6 +132,7 @@ class FacetsCommandController extends CommandController {
 	/**
 	 * Import NodeType data
 	 *
+	 * @Facets\AutoCreateChildnodes
 	 * @param string $nodeType
 	 * @return void
 	 */
@@ -117,6 +155,7 @@ class FacetsCommandController extends CommandController {
 	/**
 	 * Import Component data
 	 *
+	 * @Facets\AutoCreateChildnodes
 	 * @param string $component
 	 * @param string $parentNodePath
 	 * @return void
