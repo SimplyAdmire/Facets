@@ -11,7 +11,7 @@ facets {
 		sectionName = 'header'
 
 		styles = ${Configuration.setting('SimplyAdmire.Facets.contexts.default.includes.styles')}
-		scripts = ${Configuration.setting('SimplyAdmire.Facets.contexts.default.includes.scripts')}
+		headerScripts = ${Configuration.setting('SimplyAdmire.Facets.contexts.default.includes.headerScripts')}
 	}
 
 	body {
@@ -26,5 +26,8 @@ facets {
 		content.main = TYPO3.Neos:PrimaryContent {
 			nodePath = 'main'
 		}
+
+		footerScripts = ${Configuration.setting('SimplyAdmire.Facets.contexts.default.includes.footerScripts')}
+
 	}
 }

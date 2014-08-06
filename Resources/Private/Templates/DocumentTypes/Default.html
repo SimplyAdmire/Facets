@@ -3,7 +3,7 @@
 	<f:for each="{styles}" as="stylesheet">
 		<link href="{f:uri.resource(path:stylesheet)}" rel="stylesheet" />
 	</f:for>
-	<f:for each="{scripts}" as="script">
+	<f:for each="{headerScripts}" as="script">
 		<script src="{f:uri.resource(path:script)}"></script>
 	</f:for>
 </f:section>
@@ -11,4 +11,8 @@
 <f:section name="body">
 	<ts:render path="parts.mainMenu" />
 	<ts:render path="content.main" />
+
+	<f:for each="{footerScripts}" as="footerScript">
+		<script src="{f:uri.resource(path:footerScript)}"></script>
+	</f:for>
 </f:section>

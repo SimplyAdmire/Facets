@@ -4,7 +4,8 @@ SimplyAdmire:
       default:
         includes:
           styles: []
-          scripts: []
+          headerScripts: []
+          footerScripts: []
 
     defaultReferenceNodePath: '/sites/facets/content-elements'
     data:
