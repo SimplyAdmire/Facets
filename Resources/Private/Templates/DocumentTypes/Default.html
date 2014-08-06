@@ -1,7 +1,7 @@
 {namespace ts=TYPO3\TypoScript\ViewHelpers}
 <f:section name="header">
 	<f:for each="{styles}" as="stylesheet">
-		<link rel="{f:uri.resource(path:stylesheet)}" type="text/css" />
+		<link href="{f:uri.resource(path:stylesheet)}" rel="stylesheet" />
 	</f:for>
 	<f:for each="{scripts}" as="script">
 		<script src="{f:uri.resource(path:script)}"></script>
