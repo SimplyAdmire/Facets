@@ -19,7 +19,7 @@ For Settings options see the Settings.yaml of this Package.
 XML
 ====
 
-For examples on the XML snippets, take a look at the Resoureces/Private/Facets folder.
+For examples on the XML snippets, take a look at the Resources/Private/Facets folder.
 It is possible to create snippets for your basis structure (required) and for your nodeTypes (your content elements)
 as well as components (full blown page tree parts with plugins etc, or just some HTML snippets).
 

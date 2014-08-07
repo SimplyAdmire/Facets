@@ -89,6 +89,8 @@ class FacetsCommandController extends CommandController {
 	}
 
 	/**
+	 * Import documents, nodeTypes and Components in one call
+	 *
 	 * @Facets\AutoCreateChildnodes
 	 * @return void
 	 */
