@@ -46,3 +46,10 @@ In order to import components:
 
 	$ ./flow facets:importcomponent (which will ask for a component argument and accepts a parentNodePath argument as well)
 
+Extra's
+=======
+
+This package contains a small utility you can use to generate dummy identifiers:
+
+	$ ./flow utility:generaterandomidentifiers (optionally add -n followed by an integer to determine how many identifiers
+	will be returned, default is 10)
