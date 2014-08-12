@@ -2,7 +2,7 @@
 namespace SimplyAdmire\Facets\Command;
 
 use TYPO3\Flow\Annotations as Flow;
-use TYPO3\Flow\Cli\CommandController;
+use TYPO3\Neos\Command\NodeCommandController;
 use SimplyAdmire\Facets\Annotations as Facets;
 
 /**
@@ -10,7 +10,7 @@ use SimplyAdmire\Facets\Annotations as Facets;
  *
  * @Flow\Scope("singleton")
  */
-class FacetsCommandController extends CommandController {
+class FacetsCommandController extends NodeCommandController {
 
 	/**
 	 * @Flow\Inject
@@ -73,17 +73,20 @@ class FacetsCommandController extends CommandController {
 	protected $reflectionService;
 
 	/**
+	 * @var boolean
+	 */
+	protected $verbose = TRUE;
+
+	/**
 	 * @return void
 	 */
 	protected function callCommandMethod() {
 		parent::callCommandMethod();
 
 		if ($this->reflectionService->isMethodAnnotatedWith(__CLASS__, $this->commandMethodName, 'SimplyAdmire\Facets\Annotations\AutoCreateChildnodes')) {
-			$request = $this->objectManager->get('TYPO3\Flow\Cli\RequestBuilder')->build('node:autocreatechildnodes');
-			$response = new \TYPO3\Flow\Cli\Response();
-
-			$this->dispatcher->dispatch($request, $response);
-
+			$this->verbose = FALSE;
+			$this->autoCreateChildNodesCommand();
+			$this->verbose = TRUE;
 			$this->outputLine('Automatically created childnodes if missing');
 		}
 	}
@@ -194,6 +197,21 @@ class FacetsCommandController extends CommandController {
 		$this->domainRepository->removeAll();
 		$this->siteRepository->removeAll();
 		$this->outputLine('Database cleared');
+	}
+
+	/**
+	 * Outputs specified text to the console window
+	 * You can specify arguments that will be passed to the text via sprintf
+	 * @see http://www.php.net/sprintf
+	 *
+	 * @param string $text Text to output
+	 * @param array $arguments Optional arguments to use for sprintf
+	 * @return void
+	 */
+	protected function output($text, array $arguments = array()) {
+		if ($this->verbose === TRUE) {
+			parent::output($text, $arguments);
+		}
 	}
 
 }
