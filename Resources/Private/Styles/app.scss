@@ -1,0 +1,42 @@
+@import "compass/css3";
+@import "compass/typography/lists/horizontal-list";
+
+$menu-background-color: #444 !default;
+$menu-link-color: #fff !default;
+.facets {
+	.facets-menu {
+		font-family: "Helvetica Neue Light", "HelveticaNeue-Light", "Helvetica Neue", Calibri, Helvetica, Arial;
+		background: $menu-background-color;
+		@include horizontal-list-container();
+		> li {
+			@include horizontal-list-item(0.75rem, left);
+			> ul {
+				display: none;
+			}
+			&:hover {
+				> ul {
+					display: block;
+					position: absolute;
+					z-index: 10;
+					margin-left: 0rem;
+					background: $menu-background-color;
+					list-style-type: none;
+					font-size: 0.8rem;
+					> li > a {
+						display: block;
+						width: 100%;
+					}
+				}
+			}
+		}
+		a {
+			padding: 0.25rem 1rem;
+			color: $menu-link-color;
+		}
+		.active > a,
+		.current > a,
+		a:hover {
+			background: lighten($menu-background-color, 10%);
+		}
+	}
+}

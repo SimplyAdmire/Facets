@@ -1,0 +1,5 @@
+/Build/*
+!/Build/bower.json
+!/Build/package.json
+!/Build/Gruntfile.js
+/Resources/Public/

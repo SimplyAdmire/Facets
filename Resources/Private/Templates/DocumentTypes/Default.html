@@ -1,5 +1,6 @@
 {namespace ts=TYPO3\TypoScript\ViewHelpers}
 <f:section name="header">
+	<link href="{f:uri.resource(path:'Styles/app.css', package:'SimplyAdmire.Facets')}" rel="stylesheet" />
 	<f:for each="{styles}" as="stylesheet">
 		<link href="{f:uri.resource(path:stylesheet)}" rel="stylesheet" />
 	</f:for>
@@ -10,7 +11,12 @@
 
 <f:section name="body">
 	<ts:render path="parts.mainMenu" />
-	<ts:render path="content.main" />
+
+	<div class="row">
+		<div class="small-12 columns">
+			<ts:render path="content.main" />
+		</div>
+	</div>
 
 	<f:for each="{footerScripts}" as="footerScript">
 		<script src="{f:uri.resource(path:footerScript)}"></script>
