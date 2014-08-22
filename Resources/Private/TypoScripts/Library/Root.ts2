@@ -29,6 +29,7 @@ facets {
 		}
 
 		footerScripts = ${Configuration.setting('SimplyAdmire.Facets.contexts.default.includes.footerScripts')}
-
 	}
+
+	lastVisitedNodeScript >
 }
