@@ -3,6 +3,7 @@ namespace SimplyAdmire\Facets\Command;
 
 use TYPO3\Flow\Annotations as Flow;
 use TYPO3\Flow\Cli\CommandController;
+use TYPO3\Flow\Utility\Algorithms;
 
 /**
  * The Import Command Controller
@@ -14,29 +15,19 @@ class UtilityCommandController extends CommandController {
 	/**
 	 * Generate a number of random identifiers
 	 *
-	 * @param integer $n
+	 * @param integer $count
 	 * @return void
 	 */
-	public function generateRandomIdentifiersCommand($n = 10) {
+	public function generateRandomIdentifiersCommand($count = 10) {
 		$this->outputLine('Here are your random identifiers:');
 		$this->outputLine('');
 
-		for ($i=0;$i<10;$i++) {
-			$string = $this->generateRandomString(8) . '-' . $this->generateRandomString(4) . '-' . $this->generateRandomString(4) . '-' . $this->generateRandomString(4) . '-' . $this->generateRandomString(12);
-			$this->outputLine($string);
+		for ($i = 0; $i < 10; $i++) {
+			$this->outputLine(Algorithms::generateUUID());
 		}
 		$this->outputLine('');
 		$this->outputLine('Make sure you always use an identifier once ;-)');
 
 	}
 
-	/**
-	 * Helper method to create a random string
-	 *
-	 * @param integer $length
-	 * @return string
-	 */
-	protected function generateRandomString($length = 10) {
-		return substr(str_shuffle("0123456789abcdefghijklmnopqrstuvwxyz"), 0, $length);
-	}
 }
