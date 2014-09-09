@@ -119,7 +119,7 @@ class FacetsCommandController extends NodeCommandController {
 	 * @return void
 	 */
 	public function importSkeletonCommand() {
-		if ($this->importService->getDocumentResource() === NULL) {
+		if ($this->importService->getSkeletonResource() === NULL) {
 			$this->outputLine('The skeleton file could not be found based on:');
 			$this->outputLine('');
 			$this->outputLine('     SimplyAdmire.Facets.data.skeleton');
