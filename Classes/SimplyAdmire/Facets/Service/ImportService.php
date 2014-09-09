@@ -46,10 +46,10 @@ class ImportService extends SiteImportService {
 	/**
 	 * @return string
 	 */
-	public function getDocumentResource() {
-		$documentResourceFile = isset($this->data['documents']) ? $this->data['documents'] : NULL;
-		if ($documentResourceFile !== NULL && file_exists($documentResourceFile)) {
-			return $documentResourceFile;
+	public function getSkeletonResource() {
+		$skeletonResourceFile = isset($this->data['skeleton']) ? $this->data['skeleton'] : NULL;
+		if ($skeletonResourceFile !== NULL && file_exists($skeletonResourceFile)) {
+			return $skeletonResourceFile;
 		}
 		return NULL;
 	}
@@ -90,9 +90,9 @@ class ImportService extends SiteImportService {
 	 * @throws \TYPO3\Flow\Package\Exception\InvalidPackageStateException
 	 * @throws \TYPO3\Flow\Package\Exception\UnknownPackageException
 	 */
-	public function importDocuments() {
-		if ($this->getDocumentResource() !== NULL) {
-			$this->importSitesFromFile($this->getDocumentResource(), $this->createContext());
+	public function importSkeleton() {
+		if ($this->getSkeletonResource() !== NULL) {
+			$this->importSitesFromFile($this->getSkeletonResource(), $this->createContext());
 			return TRUE;
 		}
 		return FALSE;

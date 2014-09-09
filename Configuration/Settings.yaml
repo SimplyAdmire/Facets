@@ -9,7 +9,7 @@ SimplyAdmire:
 
     defaultReferenceNodePath: '/sites/facets/content-elements'
     data:
-      documents: 'resource://SimplyAdmire.Facets/Private/Content/Sites.xml'
+      skeleton: 'resource://SimplyAdmire.Facets/Private/Content/Sites.xml'
       nodeTypes: []
 #        text: 'resource://SimplyAdmire.Facets/Private/Content/NodeTypes/Text.xml'
 #        textWithImage: 'resource://SimplyAdmire.Facets/Private/Content/NodeTypes/TextWithImage.xml'

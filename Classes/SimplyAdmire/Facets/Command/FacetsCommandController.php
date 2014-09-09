@@ -92,14 +92,14 @@ class FacetsCommandController extends NodeCommandController {
 	}
 
 	/**
-	 * Import documents, nodeTypes and Components in one call
+	 * Import skeleton, nodeTypes and Components in one call
 	 *
 	 * @Facets\AutoCreateChildnodes
 	 * @return void
 	 */
 	public function importAllCommand() {
-		$this->outputLine('Import documents');
-		$this->importDocumentsCommand();
+		$this->outputLine('Import skeleton');
+		$this->importSkeletonCommand();
 
 		foreach ($this->data['nodeTypes'] as $nodeTypeName => $nodeTypeXml) {
 			$this->outputLine('Import nodetype %s', array($nodeTypeName));
@@ -118,17 +118,17 @@ class FacetsCommandController extends NodeCommandController {
 	 * @Facets\AutoCreateChildnodes
 	 * @return void
 	 */
-	public function importDocumentsCommand() {
+	public function importSkeletonCommand() {
 		if ($this->importService->getDocumentResource() === NULL) {
-			$this->outputLine('The documents file could not be found based on:');
+			$this->outputLine('The skeleton file could not be found based on:');
 			$this->outputLine('');
-			$this->outputLine('     SimplyAdmire.Facets.data.documents');
+			$this->outputLine('     SimplyAdmire.Facets.data.skeleton');
 			exit();
 		}
 		try {
-			$this->importService->importDocuments();
+			$this->importService->importSkeleton();
 		} catch (\Exception $exception) {
-			$this->outputLine('Error: During the import of the Documents file an exception occurred: %s', array($exception->getMessage()));
+			$this->outputLine('Error: During the import of the Skeleton file an exception occurred: %s', array($exception->getMessage()));
 			exit();
 		}
 		$this->outputLine('Import successful.');
@@ -145,9 +145,9 @@ class FacetsCommandController extends NodeCommandController {
 		$importedNodeTypeData = $this->importService->importNodeType($nodeType);
 		if ($importedNodeTypeData === FALSE) {
 			$this->outputLine('<b>Import failed</b>');
-			$this->outputLine('Please make sure you have imported the documents containing the reference node using:');
+			$this->outputLine('Please make sure you have imported the skeleton containing the reference node using:');
 			$this->outputLine('');
-			$this->outputLine('     ./flow facets:importdocuments');
+			$this->outputLine('     ./flow facets:importskeleton');
 			$this->outputLine('');
 			$this->outputLine('Also make sure the specified nodeType has the proper configuration at:');
 			$this->outputLine('');

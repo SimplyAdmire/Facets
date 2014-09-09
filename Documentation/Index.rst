@@ -36,7 +36,7 @@ In order to import everything run:
 
 In order to import the document structure:
 
-	$ ./flow facets:importdocuments
+	$ ./flow facets:importskeleton
 
 In order to import content:
 
