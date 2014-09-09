@@ -19,6 +19,7 @@ facets {
 		templatePath = 'resource://SimplyAdmire.Facets/Private/Templates/DocumentTypes/Default.html'
 		sectionName = 'body'
 		parts.mainMenu = TYPO3.Neos:Menu {
+			filter = 'SimplyAdmire.Facets:Page'
 			entryLevel = 1
 			maximumLevels = 3
 			attributes.class = 'facets-menu'
