@@ -2,8 +2,9 @@
 namespace SimplyAdmire\Facets\Command;
 
 use TYPO3\Flow\Annotations as Flow;
-use TYPO3\Neos\Command\NodeCommandController;
+
 use SimplyAdmire\Facets\Annotations as Facets;
+use TYPO3\TYPO3CR\Command\NodeCommandController;
 
 /**
  * The Import Command Controller
