@@ -1,11 +1,5 @@
-root.facets {
-	condition = ${q(node).is('[instanceof SimplyAdmire.Facets:Page]')}
-	renderPath = '/facets'
-}
-
-facets = TYPO3.Neos:Page
-facets {
-
+page = TYPO3.Neos:Page
+page {
 	head.headerIncludes = TYPO3.TypoScript:Template {
 		templatePath = 'resource://SimplyAdmire.Facets/Private/Templates/DocumentTypes/Default.html'
 		sectionName = 'header'
