@@ -2,6 +2,7 @@
 namespace SimplyAdmire\Facets\Service;
 
 use TYPO3\Flow\Annotations as Flow;
+use TYPO3\Flow\Exception;
 use TYPO3\Neos\Domain\Service\SiteImportService;
 use TYPO3\Flow\Utility\Files;
 use TYPO3\TYPO3CR\Domain\Model\NodeInterface;
@@ -86,35 +87,34 @@ class ImportService extends SiteImportService {
 		return NULL;
 	}
 	/**
-	 * @return boolean
 	 * @throws \TYPO3\Flow\Package\Exception\InvalidPackageStateException
 	 * @throws \TYPO3\Flow\Package\Exception\UnknownPackageException
 	 */
 	public function importSkeleton() {
 		if ($this->getSkeletonResource() !== NULL) {
 			$this->importSitesFromFile($this->getSkeletonResource(), $this->createContext());
-			return TRUE;
 		}
-		return FALSE;
 	}
 
 	/**
 	 * @param string $nodeType
 	 * @param string $referenceNodePath
-	 * @return boolean
+	 * @throws Exception
+	 * @return void
 	 */
 	public function importNodeType($nodeType, $referenceNodePath = NULL) {
 		$referenceNodePath = $referenceNodePath !== NULL ? $referenceNodePath : $this->defaultReferenceNodePath;
 		if ($referenceNodePath === NULL) {
-			return FALSE;
+			throw new Exception('Error: Parent node path not found');
 		}
 		$contentContext = $this->createContext();
 		$nodeData = $this->getNodeTypeResource($nodeType);
 		if ($nodeData !== NULL) {
 			$referenceNode = $contentContext->getNode($referenceNodePath);
 			if (!$referenceNode instanceof NodeInterface) {
-				return FALSE;
+				throw new Exception('Error: referenceNode is not instance of \TYPO3\TYPO3CR\Domain\Model\NodeInterface');
 			}
+
 			// Add content into the reference node (mapping...)
 			$nodeDataXMLElement = $this->getSimpleXMLElementFromXml($this->loadXML($nodeData));
 			foreach ($nodeDataXMLElement->node as $nodeXMLElement) {
@@ -126,29 +126,27 @@ class ImportService extends SiteImportService {
 					$contentNode = $referenceNode->getPrimaryChildNode()->createSingleNode((string)$nodeXMLElement->attributes()->nodeName, $nodeType);
 					$this->importNodeProperties($nodeXMLElement, $contentNode);
 				}
-				return TRUE;
 			}
 		}
-		return FALSE;
 	}
 
 	/**
 	 * @param string $component
 	 * @param string $parentNodePath
-	 * @return boolean
 	 * @throws \Exception
+	 * @return void
 	 */
 	public function importComponent($component, $parentNodePath = NULL) {
 		$parentNodePath = $parentNodePath !== NULL ? $parentNodePath : $this->getComponentParentNodePath($component);
 		if ($parentNodePath === NULL) {
-			return FALSE;
+			throw new Exception('Error: Parent node path not found');
 		}
 		$contentContext = $this->createContext();
 		$nodeData = $this->getComponentResource($component);
 		if ($nodeData !== NULL) {
 			$parentNode = $contentContext->getNode($parentNodePath);
 			if (!$parentNode instanceof NodeInterface) {
-				return FALSE;
+				throw new Exception('Error: parentNode is not instance of \TYPO3\TYPO3CR\Domain\Model\NodeInterface');
 			}
 			// Add content into the reference node (mapping...)
 			$nodeDataXMLElement = $this->getSimpleXMLElementFromXml($this->loadXML($nodeData));
@@ -156,13 +154,10 @@ class ImportService extends SiteImportService {
 				try {
 					$this->importNode($node, $parentNode);
 				} catch (\Exception $exception) {
-					echo sprintf('Error: During the import of the Component an exception occurred: %s', array($exception->getMessage()));
-					return FALSE;
+					throw new Exception('Error: During the import of the Component an exception occurred: %s', array($exception->getMessage()));
 				}
 			}
-			return TRUE;
 		}
-		return FALSE;
 	}
 
 	/**

@@ -100,16 +100,21 @@ class FacetsCommandController extends NodeCommandController {
 	 */
 	public function importAllCommand() {
 		$this->outputLine('Import skeleton');
-		$this->importSkeletonCommand();
+		try {
+			$this->importSkeletonCommand();
 
-		foreach ($this->data['nodeTypes'] as $nodeTypeName => $nodeTypeXml) {
-			$this->outputLine('Import nodetype %s', array($nodeTypeName));
-			$this->importNodeTypeCommand($nodeTypeName);
-		}
+			foreach ($this->data['nodeTypes'] as $nodeTypeName => $nodeTypeXml) {
+				$this->outputLine('Import nodetype %s', array($nodeTypeName));
+				$this->importNodeTypeCommand($nodeTypeName);
+			}
 
-		foreach ($this->data['components'] as $componentName => $componentConfiguration) {
-			$this->outputLine('Import component %s', array($componentName));
-			$this->importComponentCommand($componentName, isset($componentConfiguration['parentNodePath']) ? $componentConfiguration['parentNodePath'] : $this->defaultReferenceNodePath);
+			foreach ($this->data['components'] as $componentName => $componentConfiguration) {
+				$this->outputLine('Import component %s', array($componentName));
+				$this->importComponentCommand($componentName, isset($componentConfiguration['parentNodePath']) ? $componentConfiguration['parentNodePath'] : $this->defaultReferenceNodePath);
+			}
+		} catch (\Exception $exception) {
+			$this->outputLine($exception->getMessage());
+			$this->quit(1);
 		}
 	}
 
@@ -167,18 +172,19 @@ class FacetsCommandController extends NodeCommandController {
 	 * @return void
 	 */
 	public function importComponentCommand($component, $parentNodePath = NULL) {
-		$componentData = $parentNodePath === NULL ? $this->importService->importComponent($component) : $this->importService->importComponent($component, $parentNodePath);
-		if ($componentData === FALSE) {
-			$this->outputLine('The components file or parentNodePath could not be found based on:');
+		try {
+			$parentNodePath === NULL ? $this->importService->importComponent($component) : $this->importService->importComponent($component, $parentNodePath);
+			$this->outputLine('Import successful.');
+		} catch (\Exception $exception) {
+			$this->outputLine($exception->getMessage());
 			$this->outputLine('');
 			$this->outputLine('     SimplyAdmire.Facets.data.components.' . $component);
 			$this->outputLine('');
 			$this->outputLine('Please check and correct the settings. You can optionally override the parentNodePath using the --parentNodePath argument');
 			exit();
 		}
-		$this->outputLine('Import successful.');
-
 	}
+
 	/**
 	 * Remove all nodes, workspaces, domains and sites.
 	 *
