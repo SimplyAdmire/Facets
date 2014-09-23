@@ -2,6 +2,8 @@ SimplyAdmire:
   Facets:
     contexts:
       default:
+        menu:
+          filter: 'SimplyAdmire.Facets:Page'
         includes:
           styles: []
           headerScripts: []
