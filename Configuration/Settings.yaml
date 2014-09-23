@@ -6,6 +6,7 @@ SimplyAdmire:
           styles: []
           headerScripts: []
           footerScripts: []
+          typoScripts: []
 
     defaultReferenceNodePath: '/sites/facets/content-elements'
     data:

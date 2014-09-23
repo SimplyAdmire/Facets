@@ -1,5 +1,4 @@
-page = TYPO3.Neos:Page
-page {
+page = TYPO3.Neos:Page {
 	head.headerIncludes = TYPO3.TypoScript:Template {
 		templatePath = 'resource://SimplyAdmire.Facets/Private/Templates/DocumentTypes/Default.html'
 		sectionName = 'header'
