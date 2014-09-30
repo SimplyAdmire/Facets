@@ -154,7 +154,7 @@ class ImportService extends SiteImportService {
 				try {
 					$this->importNode($node, $parentNode);
 				} catch (\Exception $exception) {
-					throw new \Exception(sprintf('Error: During the import of the Component an exception occurred: %s', array($exception->getMessage())));
+					throw new \Exception(sprintf('Error: During the import of the Component an exception occurred: %s', $exception->getMessage()));
 				}
 			}
 		}
