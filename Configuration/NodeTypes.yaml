@@ -1,7 +1,7 @@
 'SimplyAdmire.Facets:Page':
   ui:
     label: 'Facet Page'
-    icon: 'icon-file'
+    icon: icon-file
   superTypes:
     - 'TYPO3.Neos:Document'
   childNodes:

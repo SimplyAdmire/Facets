@@ -9,8 +9,7 @@ SimplyAdmire:
           headerScripts: []
           footerScripts: []
           typoScripts: []
-
-    defaultReferenceNodePath: '/sites/facets/content-elements'
+    defaultReferenceNodePath: /sites/facets/content-elements
     data:
       skeleton: 'resource://SimplyAdmire.Facets/Private/Content/Sites.xml'
       nodeTypes: []
