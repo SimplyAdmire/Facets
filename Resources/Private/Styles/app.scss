@@ -1,6 +1,12 @@
 @import "compass/css3";
 @import "compass/typography/lists/horizontal-list";
 
+body {
+	margin: 0;
+	padding: 0;
+	font-size: 100%;
+	font-size: 1em;
+}
 $menu-background-color: #444 !default;
 $menu-link-color: #fff !default;
 .facets {
@@ -9,7 +15,8 @@ $menu-link-color: #fff !default;
 		background: $menu-background-color;
 		@include horizontal-list-container();
 		> li {
-			@include horizontal-list-item(0.75rem, left);
+			@include horizontal-list-item(0rem, left);
+			line-height: 2;
 			> ul {
 				display: none;
 			}
@@ -19,6 +26,7 @@ $menu-link-color: #fff !default;
 					position: absolute;
 					z-index: 10;
 					margin-left: 0rem;
+					padding-left: 0;
 					background: $menu-background-color;
 					list-style-type: none;
 					font-size: 0.8rem;
@@ -30,8 +38,9 @@ $menu-link-color: #fff !default;
 			}
 		}
 		a {
-			padding: 0.25rem 1rem;
+			padding: 0.5rem 1rem;
 			color: $menu-link-color;
+			text-decoration: none;
 		}
 		.active > a,
 		.current > a,
