@@ -21,18 +21,29 @@ $menu-link-color: #fff !default;
 				display: none;
 			}
 			&:hover {
+				ul {
+					margin-left: 0;
+					padding-left: 0;
+					background: $menu-background-color;
+					list-style-type: none;
+					font-size: 0.9em;
+					> li > a {
+						display: block;
+						width: 100%;
+					}
+				}
 				> ul {
 					display: block;
 					position: absolute;
 					z-index: 10;
-					margin-left: 0rem;
-					padding-left: 0;
-					background: $menu-background-color;
-					list-style-type: none;
-					font-size: 0.8rem;
-					> li > a {
-						display: block;
-						width: 100%;
+					> li > ul {
+						max-height:0;
+						overflow: hidden;
+						transition: max-height 1s ease-in;
+					}
+					> li:hover > ul {
+						max-height:400px;
+						border-bottom: 1px solid lighten($menu-background-color, 10%);
 					}
 				}
 			}
