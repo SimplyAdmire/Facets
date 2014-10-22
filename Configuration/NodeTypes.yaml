@@ -7,3 +7,13 @@
   childNodes:
     main:
       type: 'TYPO3.Neos:ContentCollection'
+
+'SimplyAdmire.Facets:HtmlFacet':
+  superTypes:
+    - 'TYPO3.Neos:Content'
+  properties:
+    templatePath:
+      type: 'string'
+  ui:
+    label: 'HTML Facet'
+    hidden: TRUE
