@@ -18,17 +18,22 @@ class TypoScriptLoadingAspect {
 
 	/**
 	 * @param JoinPointInterface $joinPoint
-	 * @Flow\Around("method(TYPO3\Neos\Domain\Service\TypoScriptService->generateNodeTypeDefinitions())")
+	 * @Flow\Around("method(TYPO3\Neos\Domain\Service\TypoScriptService->readExternalTypoScriptFile())")
 	 * @return string
 	 */
 	public function appendAdditionalTypoScript(JoinPointInterface $joinPoint) {
-		$generatedTypoScript = $joinPoint->getAdviceChain()->proceed($joinPoint);
+		$siteRootTypoScriptCode = $joinPoint->getAdviceChain()->proceed($joinPoint);
+		$pathAndFilename = $joinPoint->getMethodArgument('pathAndFilename');
 
-		foreach ($this->additionalTypoScriptIncludes as $additionalTypoScriptInclude) {
-			$generatedTypoScript .= $this->loadAndPrepareTypoScriptFromFile($additionalTypoScriptInclude);
+		if (substr($pathAndFilename, 0, 30) !== 'resource://SimplyAdmire.Facets') {
+			return $siteRootTypoScriptCode;
 		}
 
-		return $generatedTypoScript;
+		foreach ($this->additionalTypoScriptIncludes as $additionalTypoScriptInclude) {
+			$siteRootTypoScriptCode .= $this->loadAndPrepareTypoScriptFromFile($additionalTypoScriptInclude);
+		}
+
+		return $siteRootTypoScriptCode;
 	}
 
 	/**
