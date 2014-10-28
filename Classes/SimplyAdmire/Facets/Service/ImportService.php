@@ -3,7 +3,7 @@ namespace SimplyAdmire\Facets\Service;
 
 use TYPO3\Flow\Annotations as Flow;
 use TYPO3\Flow\Exception;
-use TYPO3\Neos\Domain\Service\SiteImportService;
+use TYPO3\Neos\Domain\Service\LegacySiteImportService;use TYPO3\Neos\Domain\Service\SiteImportService;
 use TYPO3\Flow\Utility\Files;
 use TYPO3\TYPO3CR\Domain\Model\NodeInterface;
 
@@ -12,7 +12,7 @@ use TYPO3\TYPO3CR\Domain\Model\NodeInterface;
  *
  * @Flow\Scope("singleton")
  */
-class ImportService extends SiteImportService {
+class ImportService extends LegacySiteImportService {
 
 	/**
 	 * @Flow\Inject
