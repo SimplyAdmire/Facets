@@ -7,7 +7,6 @@ page = TYPO3.Neos:Page {
 		headerScripts = ${Configuration.setting('SimplyAdmire.Facets.contexts.default.includes.headerScripts')}
 	}
 
-	bodyTag.attributes.class = 'facets'
 	body {
 		templatePath = 'resource://SimplyAdmire.Facets/Private/Templates/DocumentTypes/Default.html'
 		sectionName = 'body'
@@ -16,7 +15,7 @@ page = TYPO3.Neos:Page {
 			filter = ${Configuration.setting('SimplyAdmire.Facets.contexts.default.menu.filter')}
 			entryLevel = 1
 			maximumLevels = 3
-			attributes.class = 'facets-menu'
+			attributes.class = 'facets'
 
 			right = TYPO3.TypoScript:Array
 		}

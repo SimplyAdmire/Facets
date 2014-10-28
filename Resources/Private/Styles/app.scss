@@ -16,7 +16,7 @@ $menu-link-color: #fff !default;
 		@include horizontal-list-container();
 		> li {
 			@include horizontal-list-item(0rem, left);
-			line-height: 2;
+			line-height: 3;
 			> ul {
 				display: none;
 			}
