@@ -48,9 +48,7 @@ class TypoScriptLoadingAspect {
 				return $match[0];
 			}
 
-			preg_match('/^resource:\/\/(?P<PackageKey>.*)\/Private\/TypoScripts\/(?P<Path>.*)\/.*?/', $file, $matches);
-
-			return 'include: resource://' . $matches['PackageKey'] . '/Private/TypoScripts/' . $matches['Path'] . '/' . $match[1];
+			return 'include: ' . dirname($file) . '/' . $match[1];
 		}, $content);
 
 		return $content;

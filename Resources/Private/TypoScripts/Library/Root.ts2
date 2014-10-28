@@ -12,10 +12,13 @@ page = TYPO3.Neos:Page {
 		templatePath = 'resource://SimplyAdmire.Facets/Private/Templates/DocumentTypes/Default.html'
 		sectionName = 'body'
 		parts.mainMenu = TYPO3.Neos:Menu {
+			templatePath = 'resource://SimplyAdmire.Facets/Private/Templates/ProtoTypes/Menu.html'
 			filter = ${Configuration.setting('SimplyAdmire.Facets.contexts.default.menu.filter')}
 			entryLevel = 1
 			maximumLevels = 3
 			attributes.class = 'facets-menu'
+
+			right = TYPO3.TypoScript:Array
 		}
 
 		content.main = TYPO3.Neos:PrimaryContent {
