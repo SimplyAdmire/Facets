@@ -9,7 +9,6 @@
 		"grunt-contrib-concat": "*",
 		"grunt-contrib-uglify": "*",
 		"grunt-contrib-compass": "*",
-		"grunt-extend-config": "*",
 		"matchdep": "^0.3.0",
 		"grunt-contrib-clean": "*"
 	}
