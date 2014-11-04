@@ -32,7 +32,7 @@ Loading additional TypoScript:
           default:
             includes:
               typoScripts:
-                someExtraTypoScriptInclude: 'resource://My.Package/Private/TypoScripts/Library/Includes.ts2'
+                someExtraTypoScriptInclude: 'resource://My.Package/Private/TypoScript/Includes.ts2'
 
 Register a static HTML component:
 ---
