@@ -103,14 +103,18 @@ class FacetsCommandController extends NodeCommandController {
 		try {
 			$this->importSkeletonCommand();
 
-			foreach ($this->data['nodeTypes'] as $nodeTypeName => $nodeTypeXml) {
-				$this->outputLine('Import nodetype %s', array($nodeTypeName));
-				$this->importNodeTypeCommand($nodeTypeName);
+			if (is_array($this->data['nodeTypes'])) {
+				foreach ($this->data['nodeTypes'] as $nodeTypeName => $nodeTypeXml) {
+					$this->outputLine('Import nodetype %s', array($nodeTypeName));
+					$this->importNodeTypeCommand($nodeTypeName);
+				}
 			}
 
-			foreach ($this->data['components'] as $componentName => $componentConfiguration) {
-				$this->outputLine('Import component %s', array($componentName));
-				$this->importComponentCommand($componentName, isset($componentConfiguration['parentNodePath']) ? $componentConfiguration['parentNodePath'] : $this->defaultReferenceNodePath);
+			if (is_array($this->data['components'])) {
+				foreach ($this->data['components'] as $componentName => $componentConfiguration) {
+					$this->outputLine('Import component %s', array($componentName));
+					$this->importComponentCommand($componentName, isset($componentConfiguration['parentNodePath']) ? $componentConfiguration['parentNodePath'] : $this->defaultReferenceNodePath);
+				}
 			}
 		} catch (\Exception $exception) {
 			$this->outputLine($exception->getMessage());

@@ -25,7 +25,7 @@ class TypoScriptLoadingAspect {
 		$siteRootTypoScriptCode = $joinPoint->getAdviceChain()->proceed($joinPoint);
 		$pathAndFilename = $joinPoint->getMethodArgument('pathAndFilename');
 
-		if (substr($pathAndFilename, 0, 30) !== 'resource://SimplyAdmire.Facets') {
+		if (!is_array($this->additionalTypoScriptIncludes) || substr($pathAndFilename, 0, 30) !== 'resource://SimplyAdmire.Facets') {
 			return $siteRootTypoScriptCode;
 		}
 
