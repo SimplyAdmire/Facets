@@ -15,8 +15,7 @@
 	],
 	"require": {
 		"typo3/neos": "*",
-		"typo3/neos-nodetypes": "*",
-		"flowpack/nodegenerator": "*"
+		"typo3/neos-nodetypes": "*"
 	},
 	"autoload": {
 		"psr-0": {
