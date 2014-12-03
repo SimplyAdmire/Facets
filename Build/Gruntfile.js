@@ -1,6 +1,4 @@
 module.exports = function (grunt) {
-	grunt.loadNpmTasks("grunt-extend-config");
-
 	grunt.initConfig({
 		pkg: grunt.file.readJSON('package.json'),
 		compass: {
