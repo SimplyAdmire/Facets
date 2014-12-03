@@ -88,5 +88,5 @@ module.exports = function (grunt) {
 	grunt.registerTask('compile-js', ['concat']);
 	grunt.registerTask('compile', ['compile-css', 'compile-js']);
 
-	grunt.registerTask('dist', ['compile-css', 'concat', 'requirejs', 'clean']);
+	grunt.registerTask('dist', ['compile-css', 'concat', 'clean']);
 };
