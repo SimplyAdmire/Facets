@@ -1,25 +1,12 @@
+
 SimplyAdmire:
   Facets:
     contexts:
       default:
         menu:
           filter: 'SimplyAdmire.Facets:Page'
-#        includes:
-#          styles: []
-#          headerScripts: []
-#          footerScripts: []
-#          typoScripts: []
     defaultReferenceNodePath: /sites/facets/content-elements
     data:
       skeleton: 'resource://SimplyAdmire.Facets/Private/Content/Sites.xml'
-      nodeTypes: []
-#        text: 'resource://SimplyAdmire.Facets/Private/Content/NodeTypes/Text.xml'
-#        textWithImage: 'resource://SimplyAdmire.Facets/Private/Content/NodeTypes/TextWithImage.xml'
-      components: []
-#        componentX:
-#          # Appends style to the context
-#          includes:
-#            styles: []
-#            scripts: []
-#          resource: 'resource://SimplyAdmire.Facets/Private/Content/ComponentX.xml'
-#          parentNodePath: '/sites/facets'
+      nodeTypes: {  }
+      components: {  }
